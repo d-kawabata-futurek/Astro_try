@@ -1,0 +1,214 @@
+---
+// HeadContent.astro
+import config from '../config.json';
+import { ASSETS_URL } from '../../config.js';
+import CommonJS from '../assets/common/scripts/javascript/common';
+// import { AstroFont } from "astro-font"; // googleフォントを使用する場合インポートする
+
+// useEffect(() => {
+//   // Selector.jsの初期化
+// 	import '../assets/common/scripts/javascript/modules/Selector';
+//     .then(module => {
+//       // 必要に応じてmoduleからエクスポートされたクラスや関数を使用
+//       new module.default();
+//     })
+//     .catch(error => console.error('Error loading Selector.js:', error));
+// });
+
+const {
+	layout,
+	RESPONSIVE,
+	REDIRECT,
+	ADD_STYLES,
+	ADD_SCRIPTS_HEADER,
+	LANGUAGE,
+	NAMESPACE,
+	META_CHARSET,
+	META_ROBOTS,
+	META_VIEWPORT,
+	META_TITLE,
+	META_SHARE_TITLE,
+	META_KEYWORDS,
+	META_DESCRIPTION,
+	META_SHARE_DESCRIPTION,
+	META_AUTHOR,
+	META_COPYRIGHT,
+	META_APPLE_ICON,
+	META_ICON,
+	META_XHTML_ICON,
+	META_FACEBOOK,
+	META_FACEBOOK_IMAGE,
+	META_FACEBOOK_LOCALE,
+	META_FACEBOOK_ID,
+	META_TWITTER,
+	META_TWITTER_CARD,
+	META_TWITTER_ACCOUNT,
+	META_TWITTER_APP_ANDROID,
+	META_TWITTER_APP_IPAD,
+	META_TWITTER_APP_IPHONE,
+	META_GOOGLE,
+	META_WINDOWS,
+	META_WINDOWS_IMAGE,
+	META_WINDOWS_COLOR,
+	META_OLD_BROWSER,
+	META_PWA_MODE,
+	WEB_SITE_NAME,
+	FILE_PATH,
+	RELATIVE_PATH,
+	SPECIFIED_PATH,
+	CACHE_VERSION,
+} = Astro.props;
+---
+
+<head>
+	<meta charset={ META_CHARSET }>
+	<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<![endif]-->
+
+	<title>{ META_TITLE }</title>
+
+	<meta name="robots" content={ META_ROBOTS }>
+	<meta name="googlebot" content={ META_ROBOTS }>
+
+	{ META_KEYWORDS && <meta name="keywords" content={ META_KEYWORDS }> }
+	{ META_DESCRIPTION && <meta name="description" content={ META_DESCRIPTION }> }
+	{ META_AUTHOR && <meta name="author" content={ META_AUTHOR }> }
+	{ META_COPYRIGHT && <meta name="copyright" content={ META_COPYRIGHT }> }
+
+	<link rel="index" href={ Astro.site }>
+	<link rel="canonical" href={ `${ Astro.site }${ FILE_PATH }` }>
+	{ !RESPONSIVE && <link rel="alternate" media="only screen and (max-width: 640px)" href={ `${ Astro.site }sp/${ FILE_PATH }` }> }
+
+	<!-- Viewportの設定 -->
+	<meta name="viewport" content={ META_VIEWPORT }>
+	<meta name="format-detection" content="telephone=no,address=no,email=no">
+	{ META_PWA_MODE && <>
+
+	<!-- iOS Safari & Chrome Android Full screen -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	</>}
+
+	{META_FACEBOOK && (
+	<!-- Facebook用OGP指定 --><>
+	<meta property="og:type" content={ NAMESPACE }>
+	<meta property="og:site_name" content={ WEB_SITE_NAME }>
+	{ META_SHARE_TITLE ? 
+				<><meta property="og:title" content={ META_SHARE_TITLE }>
+	</> : <><meta property="og:title" content={ META_TITLE }>
+	</>}
+	{ META_SHARE_DESCRIPTION ?
+				<><meta property="og:description" content={ META_SHARE_DESCRIPTION }>
+	</> : <><meta property="og:description" content={ META_DESCRIPTION }>
+	</>}
+	<meta property="og:url" content={ `${ Astro.site }${ FILE_PATH }` }>
+	<meta property="og:image" content={ `${ ASSETS_URL }${ config.ASSETS_DIR.COMMON }common/images/${ META_FACEBOOK_IMAGE }` }>
+	<meta property="og:locale" content={ META_FACEBOOK_LOCALE }>
+	{ META_FACEBOOK_ID && <meta property="fb:app_id" content={ META_FACEBOOK_ID }> }
+	</>)}
+
+	{ META_TWITTER && (
+	<!-- Twitter用CARD指定 --><>
+	<meta name="twitter:card" content={ META_TWITTER_CARD }>
+	<meta name="twitter:url" content={ `${ Astro.site }${ FILE_PATH }` }>
+	{ META_SHARE_TITLE ?
+				<><meta name="twitter:title" content={ META_SHARE_TITLE }>
+	</> : <><meta name="twitter:title" content={ META_TITLE }>
+	</>}
+	{ META_SHARE_DESCRIPTION ?
+				<><meta name="twitter:description" content={ META_SHARE_DESCRIPTION }>
+	</> : <><meta name="twitter:description" content={ META_DESCRIPTION }>
+	</>}
+	{ META_TWITTER_ACCOUNT && <meta name="twitter:site" content={ `@${ META_TWITTER_ACCOUNT }` }>}
+	{ META_TWITTER_ACCOUNT && <meta name="twitter:creator" content={ `@${ META_TWITTER_ACCOUNT }` }>}
+	<meta name="twitter:image:src" content={ `${ ASSETS_URL }${ config.ASSETS_DIR.COMMON }common/images/${ META_FACEBOOK_IMAGE }` }>
+	{ META_TWITTER_APP_ANDROID && <meta name="twitter:app:android" content={ META_TWITTER_APP_ANDROID }>}
+	{ META_TWITTER_APP_IPAD && <meta name="twitter:app:id:ipad" content={ META_TWITTER_APP_IPAD }>}
+	{ META_TWITTER_APP_IPHONE && <meta name="twitter:app:id:iphone" content={ META_TWITTER_APP_IPHONE }>}</>
+	)}
+
+	{ META_GOOGLE && 
+	<><!-- Google+用CARD指定 -->
+	{ META_SHARE_TITLE ?
+				<><meta itemprop="name" content={ META_SHARE_TITLE }>
+	</> : <><meta itemprop="name" content={ META_TITLE }>
+	</>}
+	{ META_SHARE_DESCRIPTION ?
+				<><meta itemprop="description" content={ META_SHARE_DESCRIPTION }>
+	</> : <><meta itemprop="description" content={ META_DESCRIPTION }>
+	</>}
+	<meta itemprop="image" content={ `${ ASSETS_URL }${ config.ASSETS_DIR.COMMON }common/images/${ META_FACEBOOK_IMAGE }` }>
+	</>
+	}
+	{ META_WINDOWS && 
+	<!-- Windows用ピン指定 -->
+	<meta name="application-name" content={ WEB_SITE_NAME }>
+	<meta name="msapplication-tooltip" content={ META_TITLE }>
+	<meta name="msapplication-starturl" content={ `${ Astro.site }${ FILE_PATH }` }>
+	<meta name="msapplication-TileImage" content={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/images/${ META_WINDOWS_IMAGE }` }>
+	<meta name="msapplication-TileColor" content={ META_WINDOWS_COLOR }>
+	}
+
+	<!-- アイコン指定(iOS/Android込) -->{/* TODO ogpの画像パス系を考える */}
+	{ META_FACEBOOK && <link rel="image_src" href={ `${ ASSETS_URL }${ config.ASSETS_DIR.COMMON }common/images/${ META_FACEBOOK_IMAGE }` }>}
+	<link rel="apple-touch-icon-precomposed" href={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/images/${ META_APPLE_ICON }` }>
+	<link rel="shortcut icon" href={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/images/${ META_XHTML_ICON }` } type="image/x-icon">
+	<link rel="icon" href={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/images/${ META_ICON }` } type="image/png">
+
+	{ ADD_STYLES && (
+	<!-- スタイルシート指定 -->
+	<link rel="stylesheet" href={ ADD_STYLES }>
+	)}
+	{/* <link rel="stylesheet" href={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/stylesheets/reset.css` }> */}
+
+	{/* <!-- Google fonts指定 -->
+	<AstroFont
+		config={[
+			{
+				src: [],
+				name: "Noto+Sans+JP",
+				googleFontsURL: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap",
+				preload: true,
+				display: "swap",
+				selector: "body",
+				fallback: "sans-serif",
+			},
+		]}
+	/> */}
+
+	<!-- JavaScript指定 -->
+	{ META_OLD_BROWSER ?
+	<script src={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/js/lib/jquery-1.12.4.min.js` } is:inline></script>
+	<!--[if lt IE 9]>
+	<script src={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/js/lib/html5shiv.min.js` } is:inline></script>
+	<script src={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/js/lib/selectivizr.min.js` } is:inline></script>
+	<script src={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/js/lib/polyfill.js` } is:inline></script>
+	<![endif]-->
+	:
+	<script src={ `${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/scripts/lib/jquery-3.7.1.min.js` } is:inline></script>
+	}
+	{ REDIRECT && (
+	<script>
+		import config from '../config.json';
+		import { redirectSP } from '../assets/common/scripts/javascript/index';
+		const { 
+			FILE_PATH,
+			SPECIFIED_PATH,
+		} = Astro.props;
+		redirectSP(`${ SPECIFIED_PATH }sp/${ config.CURRENT_DIR }${ FILE_PATH }`);
+	</script>
+	) }
+  {ADD_SCRIPTS_HEADER && ADD_SCRIPTS_HEADER.map((element: string) => (
+    <script src={element} is:inline></script>
+  ))}
+  {/* {ADD_SCRIPTS_HEADER && (
+    <script src={ADD_SCRIPTS_HEADER} is:inline></script>
+  )} */}
+	<script>
+		import Selector from '../assets/common/scripts/javascript/modules/Selector';
+		document.addEventListener('DOMContentLoaded', () => {
+			new Selector();
+		});
+	</script>
+</head>

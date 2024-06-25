@@ -1,0 +1,50 @@
+@use "sass:math";
+
+// ------------------------------------------- SASS Information
+//  Name:      _config.scss
+//  Author:    GlitchWorker
+// -----------------------------------------------------------
+
+// -----------------------------------------------------------
+//  FUNCTIONS
+// -----------------------------------------------------------
+
+@forward 'functions/viewport';
+
+// -----------------------------------------------------------
+//  VARS
+// -----------------------------------------------------------
+
+@forward 'vars/variable';
+// @forward 'vars/color';
+// @forward 'vars/easing';
+
+// -----------------------------------------------------------
+//  MIXINS
+// -----------------------------------------------------------
+
+@forward 'mixins/fontSize';
+@forward 'mixins/fontWeight';
+@forward 'mixins/fontDecoration';
+@forward 'mixins/elementSize';
+@forward 'mixins/clearfix';
+@forward 'mixins/hideaway';
+@forward 'mixins/opacity';
+@forward 'mixins/inlineBlock';
+@forward 'mixins/mediaqueries';
+@forward 'mixins/css3fix';
+// @forward 'inlinefix';
+
+// -----------------------------------------------------------
+//  STYLES: utils
+// -----------------------------------------------------------
+
+// @forward 'utils/font';
+// @forward 'utils/align';
+// @forward 'utils/float';
+// @forward 'utils/margin';
+// @forward 'utils/padding';
+// @forward 'utils/width';
+// @forward 'utils/display';
+// @forward 'utils/visibility';
+// @forward 'utils/tooltips';

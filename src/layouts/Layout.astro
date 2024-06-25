@@ -1,0 +1,29 @@
+---
+import { getDefaultProps } from '../lib/defaultProps';
+import config from '../config.json';
+// import '../assets/scss/globals.scss'
+import '../assets/stylesheets/pc/app.scss'
+import HeadContent from '../components/HeadContent.astro';
+import CommonJS from '../assets/common/scripts/javascript/common';
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
+const props = getDefaultProps(Astro);
+const { 
+	BODY_CLASS,
+	LANGUAGE,
+	NAMESPACE,
+} = props;
+---
+
+<!DOCTYPE html>
+<html lang={ LANGUAGE } prefix={ `og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# mixi: http://mixi-platform.com/ns# website: http://ogp.me/ns/${ NAMESPACE }#` } class="no-js">
+	<HeadContent { ...props } />
+	<body class=`page-${ BODY_CLASS }`>
+		<Header { ...props } />
+
+		<slot />
+
+		<Footer { ...props } />
+	</body>
+</html>

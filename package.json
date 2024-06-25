@@ -1,0 +1,25 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "stg": "NODE_ENV=staging astro build",
+    "prod": "NODE_ENV=production astro build"
+  },
+  "dependencies": {
+    "astro": "^4.10.3",
+    "astro-font": "^0.0.81",
+    "sass": "^1.77.4"
+  },
+  "volta": {
+    "node": "18.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.13"
+  }
+}

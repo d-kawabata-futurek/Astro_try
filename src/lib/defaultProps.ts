@@ -1,0 +1,147 @@
+import config from '../config.json';
+import { getRenderProps } from './render';
+
+export interface Props {
+  layout: string;
+  RESPONSIVE: boolean;
+  REDIRECT: boolean;
+
+  BODY_CLASS: string;
+  ADD_STYLES: string;
+  ADD_SCRIPTS_HEADER: string;
+  ADD_SCRIPTS_FOOTER: string;
+
+  LANGUAGE: string;
+  NAMESPACE: string;
+  META_CHARSET: string;
+  META_ROBOTS: string;
+  META_VIEWPORT: string;
+  META_TITLE: string;
+  META_SHARE_TITLE: string;
+  META_KEYWORDS: string;
+  META_DESCRIPTION: string;
+  META_SHARE_DESCRIPTION: string;
+  META_AUTHOR: string;
+  META_COPYRIGHT: string;
+  META_APPLE_ICON: string;
+  META_ICON: string;
+  META_XHTML_ICON: string;
+  META_FACEBOOK: boolean;
+  META_FACEBOOK_IMAGE: string;
+  META_FACEBOOK_LOCALE: string;
+  META_FACEBOOK_ID: string;
+  META_TWITTER: boolean;
+  META_TWITTER_CARD: string;
+  META_TWITTER_ACCOUNT: string;
+  META_TWITTER_APP_ANDROID: string;
+  META_TWITTER_APP_IPAD: string;
+  META_TWITTER_APP_IPHONE: string;
+  META_GOOGLE: boolean;
+  META_WINDOWS: boolean;
+  META_WINDOWS_IMAGE: string;
+  META_WINDOWS_COLOR: string;
+  META_OLD_BROWSER: boolean;
+  META_PWA_MODE: boolean;
+
+  WEB_SITE_URL: string;
+  WEB_SITE_NAME: string;
+  FILE_PATH: string;
+  ABSOLUTE_DIR: boolean;
+  RELATIVE_PATH: string;
+  SPECIFIED_PATH: string;
+  CACHE_VERSION: string;
+}
+
+export const getDefaultProps = (Astro: any): Props => {
+  const render = getRenderProps(Astro);
+  const {
+    layout,
+    RESPONSIVE,
+    REDIRECT,
+    BODY_CLASS,
+    ADD_STYLES,
+    ADD_SCRIPTS_HEADER,
+    ADD_SCRIPTS_FOOTER,
+    LANGUAGE,
+    NAMESPACE,
+    META_CHARSET,
+    META_ROBOTS,
+    META_VIEWPORT,
+    META_TITLE,
+    META_SHARE_TITLE,
+    META_KEYWORDS,
+    META_DESCRIPTION,
+    META_SHARE_DESCRIPTION,
+    META_AUTHOR,
+    META_COPYRIGHT,
+    META_APPLE_ICON,
+    META_ICON,
+    META_XHTML_ICON,
+    META_FACEBOOK,
+    META_FACEBOOK_IMAGE,
+    META_FACEBOOK_LOCALE,
+    META_FACEBOOK_ID,
+    META_TWITTER,
+    META_TWITTER_CARD,
+    META_TWITTER_ACCOUNT,
+    META_TWITTER_APP_ANDROID,
+    META_TWITTER_APP_IPAD,
+    META_TWITTER_APP_IPHONE,
+    META_GOOGLE,
+    META_WINDOWS,
+    META_WINDOWS_IMAGE,
+    META_WINDOWS_COLOR,
+    META_OLD_BROWSER,
+    META_PWA_MODE,
+    WEB_SITE_URL,
+    WEB_SITE_NAME,
+  } = Astro.props;
+
+  return {
+    layout,
+    RESPONSIVE,
+    REDIRECT,
+    BODY_CLASS,
+    ADD_STYLES,
+    ADD_SCRIPTS_HEADER,
+    ADD_SCRIPTS_FOOTER,
+    LANGUAGE,
+    NAMESPACE,
+    META_CHARSET,
+    META_ROBOTS,
+    META_VIEWPORT,
+    META_TITLE,
+    META_SHARE_TITLE,
+    META_KEYWORDS,
+    META_DESCRIPTION,
+    META_SHARE_DESCRIPTION,
+    META_AUTHOR,
+    META_COPYRIGHT,
+    META_APPLE_ICON,
+    META_ICON,
+    META_XHTML_ICON,
+    META_FACEBOOK,
+    META_FACEBOOK_IMAGE,
+    META_FACEBOOK_LOCALE,
+    META_FACEBOOK_ID,
+    META_TWITTER,
+    META_TWITTER_CARD,
+    META_TWITTER_ACCOUNT,
+    META_TWITTER_APP_ANDROID,
+    META_TWITTER_APP_IPAD,
+    META_TWITTER_APP_IPHONE,
+    META_GOOGLE,
+    META_WINDOWS,
+    META_WINDOWS_IMAGE,
+    META_WINDOWS_COLOR,
+    META_OLD_BROWSER,
+    META_PWA_MODE,
+    WEB_SITE_URL,
+    WEB_SITE_NAME,
+    FILE_PATH: render.FILE_PATH,
+    ABSOLUTE_DIR: config.ABSOLUTE_DIR,
+    RELATIVE_PATH: render.RELATIVE_PATH,
+    SPECIFIED_PATH: render.SPECIFIED_PATH,
+    CACHE_VERSION: render.CACHE_VERSION,
+  };
+};

@@ -1,0 +1,33 @@
+---
+import config from '../config.json';
+
+// Propsを取得
+const {
+	META_TITLE,
+	RELATIVE_PATH,
+	SPECIFIED_PATH
+} = Astro.props;
+---
+
+<header id="section-header">
+	<h1>header { META_TITLE }</h1>
+	<p><a href={ RELATIVE_PATH }>top page</a></p>
+	<p><img src=`${ SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/images/tile_image.png` alt=""></p>
+</header><!-- /#section-header -->
+
+<style lang="scss" is:global>
+	@use "sass:math";
+	@use '../assets/common/stylesheets/config';
+	/* ------------------------------------------- SASS Information
+		Name:      /components/header
+		----------------------------------------------------------- */
+
+	#section-header {
+		@include config.RESPONSIVE('PC', config.$MIN_WIDTH) {
+			/* PC向けのスタイル */
+		}
+		@include config.RESPONSIVE('SP', config.$MIN_WIDTH) {
+			/* SP向けのスタイル */
+		}
+	}
+</style>

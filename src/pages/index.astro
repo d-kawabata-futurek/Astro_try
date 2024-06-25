@@ -1,0 +1,83 @@
+---
+import { getRenderProps } from '../lib/render';
+import config from '../config.json';
+import Layout from '../layouts/Layout.astro';
+import example from '../_modules/data/example.json';
+import exampleTwo from '../_modules/data/exampleTwo/exampleTwo.json';
+// import exampleThree from '../_modules/data/exampleThree.yml';
+import exampleFour from '../_modules/data/exampleFour.json';
+import ExampleComponent from '../components/ExampleComponent.astro';
+const render = getRenderProps(Astro);
+
+const props = {
+	layout: "pc",
+	RESPONSIVE: true,
+	REDIRECT: false,
+
+	BODY_CLASS: "index",
+	ADD_STYLES: "",
+
+	ADD_SCRIPTS_HEADER: [
+		// "/assets/hoge.js",
+		// "/assets/fuga.js"
+	],
+	ADD_SCRIPTS_FOOTER: [
+		// "/assets/hoge.js",
+		// "/assets/fuga.js"
+	],
+
+	LANGUAGE: "ja",
+	NAMESPACE: "website",
+	META_CHARSET: "UTF-8",
+	META_ROBOTS: "index,follow",
+	META_VIEWPORT: "width=device-width,initial-scale=1,minimum-scale=1,shrink-to-fit=no,viewport-fit:cover",
+	META_TITLE: "これはタイトルです",
+	META_SHARE_TITLE: "",
+	META_KEYWORDS: "これはキーワードです",
+	META_DESCRIPTION: "これはディスクリプションです",
+	META_SHARE_DESCRIPTION: "",
+	META_AUTHOR: "",
+	META_COPYRIGHT: "",
+	META_APPLE_ICON: "favicon.svg",
+	META_ICON: "favicon.ico",
+	META_XHTML_ICON: "favicon.svg",
+	META_FACEBOOK: true,
+	META_FACEBOOK_IMAGE: "ogp_image.png",
+	META_FACEBOOK_LOCALE: "ja_JP",
+	META_FACEBOOK_ID: "",
+	META_TWITTER: true,
+	META_TWITTER_CARD: "summary_large_image",
+	META_TWITTER_ACCOUNT: "",
+	META_TWITTER_APP_ANDROID: "",
+	META_TWITTER_APP_IPAD: "",
+	META_TWITTER_APP_IPHONE: "",
+	META_GOOGLE: false,
+	META_WINDOWS: false,
+	META_WINDOWS_IMAGE: "tile_image.png",
+	META_WINDOWS_COLOR: "#000000",
+	META_OLD_BROWSER: false,
+	META_PWA_MODE: false,
+};
+---
+
+<Layout { ...props }>
+	<main id="section-contents">
+		<p>テストテキスト</p>
+		<p><a href={ render.RELATIVE_PATH }>top page</a></p>
+		<p><img src=`${ render.SPECIFIED_PATH }${ config.ASSETS_DIR.COMMON }common/images/tile_image.png` alt=""></p>
+		<p>{ example.text }</p>
+		<p>{ exampleTwo.text }</p>
+		<!-- <p>{ exampleThree.text }</p>
+		<p>{ exampleThree.test.text }</p> -->
+		<div>
+			{ exampleFour.data.map((data) => (
+			<h3>{data.title}</h3>
+			<p>{data.title}</p>
+			)) }
+		</div>
+		<ExampleComponent
+			title="Title from exampleComponent"
+			text="Text from exampleComponent"
+		/>
+	</main>
+</Layout>

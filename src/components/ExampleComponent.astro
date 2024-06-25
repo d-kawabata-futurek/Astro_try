@@ -1,0 +1,64 @@
+---
+interface Props {
+	title: string;
+	text: string;
+}
+
+const { title, text } = Astro.props;
+---
+
+<div class="c-exampleComponent">
+	<div class="c-exampleComponent_wrap">
+		<h3 class="c-exampleComponent_title">{ title }</h3>
+		<p class="c-exampleComponent_text">{ text }</p>
+	</div>
+</div>
+
+<style lang="scss">
+	@use "sass:math";
+	@use '../assets/common/stylesheets/config';
+	.c-exampleComponent{
+		@include config.RESPONSIVE('PC', config.$MIN_WIDTH) {
+			margin-top: 60px;
+		}
+		@include config.RESPONSIVE('SP', config.$MIN_WIDTH) {
+			@include config.margin_top_vw(120);
+		}
+		.c-exampleComponent_wrap{
+			@include config.RESPONSIVE('PC', config.$MIN_WIDTH) {
+				padding-top: 60px;
+				padding-bottom: 60px;
+			}
+			@include config.RESPONSIVE('SP', config.$MIN_WIDTH) {
+				@include config.padding_top_vw(120);
+				@include config.padding_bottom_vw(120);
+			}
+		}
+		.c-exampleComponent_title{
+			@include config.fontWeight('Bold');
+			@include config.letterSpacing(80);
+			@include config.RESPONSIVE('PC', config.$MIN_WIDTH) {
+				font-size: 16px;
+				@include config.lineHeight(44, 32);
+			}
+			@include config.RESPONSIVE('SP', config.$MIN_WIDTH) {
+				$size: 32;
+				@include config.fontSize_vw($size);
+				@include config.lineHeight(44, $size);
+			}
+		}
+		.c-exampleComponent_text{
+			@include config.fontWeight('Medium');
+			@include config.letterSpacing(80);
+			@include config.RESPONSIVE('PC', config.$MIN_WIDTH) {
+				font-size: 14px;
+				@include config.lineHeight(40, 26);
+			}
+			@include config.RESPONSIVE('SP', config.$MIN_WIDTH) {
+				$size: 26;
+				@include config.fontSize_vw($size);
+				@include config.lineHeight(40, $size);
+			}
+		}
+	}
+</style>
